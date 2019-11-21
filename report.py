@@ -3,11 +3,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import mysql.connector
 import mysqlconnection
 from datetime import datetime
-#from PyQt5.QtWidgets import QApplication, QMainWindow,  QAction, QTextEdit, QFontdReport, QColordReport, QFiledReport
 import sys
-#from PyQt5.QtGui import QIcon
-#from PyQt5.QtPrintSupport import QPrintdReport, QPrinter, QPrintPreviewdReport
-#from PyQt5.Qt import QFileInfo
+from fpdf import FPDF
+
 
 mydb = mysql.connector.connect(
     host="localhost",
@@ -22,12 +20,14 @@ class Ui_Report(object):
         global disps
         global time
         global algorithm
+        global Algo
+        global FINDINGS
         display = """select * from imageinfo order by id desc"""
         mycursor.execute(display, )
         disp = mycursor.fetchone()
         disps = [row for row in disp]
         time = datetime.now().strftime("%H:%M:%S")
-        algorithm = 'sha1'
+        algorithm = ''
         print(disps[0])
         print(disps[1])
         print(disps[2])
@@ -84,17 +84,31 @@ class Ui_Report(object):
         self.label_14.setText("")
         self.label_14.setObjectName("label_14")
 
+        self.textEdit = QtWidgets.QPlainTextEdit(dReport)
+        self.textEdit.setGeometry(QtCore.QRect(300, 630, 300, 30))
+
+        self.textEdit1 = QtWidgets.QPlainTextEdit(dReport)
+        self.textEdit1.setGeometry(QtCore.QRect(300, 680, 300, 30))
+
+
+        self.label_15 = QtWidgets.QLabel(dReport)
+        self.label_15.setGeometry(QtCore.QRect(160, 670, 131, 17))
+        self.label_15.setText("")
+        self.label_15.setObjectName("label_15")
+
         self.exportbtn = QtWidgets.QPushButton(dReport)
-        self.exportbtn.setGeometry(QtCore.QRect(350, 700, 141, 51))
+        self.exportbtn.setGeometry(QtCore.QRect(400, 750, 141, 51))
         self.exportbtn.setStyleSheet("background-color:rgb(255, 123, 8);\n""color:rgb(255, 255, 255);")
         self.exportbtn.setObjectName("export_btn")
+
+
 
         pixmap = QtGui.QPixmap("output/output.jpg") # Setup pixmap with the provided image
         pixmap = pixmap.scaled(self.label.width(), self.label.height(), QtCore.Qt.KeepAspectRatio) # Scale pixmap
         self.label.setPixmap(pixmap) # Set the pixmap onto the label
         self.label.setAlignment(QtCore.Qt.AlignCenter)
 
-        self.exportbtn.clicked.connect(self.pdf)
+        self.exportbtn.clicked.connect(self.printPDF)
 
         self.retranslateUi(dReport)
         QtCore.QMetaObject.connectSlotsByName(dReport)
@@ -110,6 +124,9 @@ class Ui_Report(object):
         self.label_6.setText(_translate("dReport", "REPORT"))
         self.label_7.setText(_translate("dReport", "DATE & TIME         :"))
         self.label_8.setText(_translate("dReport", "ALGORITHM          :"))
+        self.label_15.setText(_translate("dReport", "FINDINGS                :"))
+
+
         self.exportbtn.setText(_translate("dReport", "export_btn"))
         self.label_14.setText(_translate("dReport", str(disps[1])))
         self.label_9.setText(_translate("dReport", str(disps[2])))
@@ -118,16 +135,26 @@ class Ui_Report(object):
         self.label_13.setText(_translate("dReport", str(time)))
         self.label_12.setText(_translate("dReport", str(algorithm)))
 
-    def pdf(self):
-        fn, _ = QFiledReport.getSaveFileName(self, 'export_btn', None, 'PDF files (.pdf);;All Files()')
-        if fn != '':
-            if QFileInfo(fn).suffix() == "" : fn += '.pdf'
-            printer = QPrinter(QPrinter.HighResolution)
-            printer.setOutputFormat(QPrinter.PdfFormat)
-            printer.setOutputFileName(fn)
-            self.label_2.document().print_(printer)
+    def printPDF(self):
+        self.textEdit.setObjectName("textEdit")
+        Algo=self.textEdit.toPlainText()
+        print('Algo:' + Algo)
 
+        self.textEdit1.setObjectName("textEdit1")
+        FINDINGS=self.textEdit1.toPlainText()
+        print('test:' + FINDINGS)
 
+        pdf = FPDF()
+        times = datetime.now().strftime("%d%m%Y%H%M%S")
+        pdf.add_page()
+        pdf.set_xy(10, 0)
+        pdf.set_font('arial', 'B', 13.0)
+        pdf.cell(ln=1, h=5.0, align='L', w=0, txt=str(disps[1]), border=0)
+        pdf.cell(ln=1, h=5.0, align='L', w=0, txt=str(disps[2]), border=0)
+        pdf.cell(ln=1, h=5.0, align='L', w=0, txt=str(disps[3]), border=0)
+        pdf.cell(ln=1, h=5.0, align='L', w=0, txt=str(Algo), border=0)
+        pdf.cell(ln=1, h=5.0, align='L', w=0, txt=str(FINDINGS), border=0)
+        pdf.output('pdf/caseno' + str(disps[1]) + ':' + times + '.pdf', 'F')
 
 
 if __name__ == "__main__":
