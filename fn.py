@@ -46,9 +46,9 @@ def noise(self):
     img = cv2.imread("a.png")
 
     median = cv2.medianBlur(img, 5)
-    cv2.imwrite("output/output.jpg", median)
+    cv2.imwrite("output/output.png", median)
 
-    pixmap = QtGui.QPixmap("output/output.jpg") # Setup pixmap with the provided image
+    pixmap = QtGui.QPixmap("output/output.png") # Setup pixmap with the provided image
     pixmap = pixmap.scaled(self.imagelab2.width(), self.imagelab2.height(), QtCore.Qt.KeepAspectRatio) # Scale pixmap
     self.imagelab2.setPixmap(pixmap) # Set the pixmap onto the label
     self.imagelab2.setAlignment(QtCore.Qt.AlignCenter)
@@ -96,8 +96,8 @@ def mac(self):
                 b = float(a - a_low) / (a_high - a_low) * 255
             img.itemset((i, j), b)
 
-    cv2.imwrite('output/output.jpg', img)
-    pixmap = QtGui.QPixmap("output/output.jpg") # Setup pixmap with the provided image
+    cv2.imwrite('output/output.png', img)
+    pixmap = QtGui.QPixmap("output/output.png") # Setup pixmap with the provided image
     pixmap = pixmap.scaled(self.imagelab2.width(), self.imagelab2.height(), QtCore.Qt.KeepAspectRatio) # Scale pixmap
     self.imagelab2.setPixmap(pixmap) # Set the pixmap onto the label
     self.imagelab2.setAlignment(QtCore.Qt.AlignCenter)
@@ -126,8 +126,8 @@ def scc(self):
                 b = 255
             img.itemset((i, j), b)
 
-    cv2.imwrite('output/output.jpg', img)
-    pixmap = QtGui.QPixmap("output/output.jpg") # Setup pixmap with the provided image
+    cv2.imwrite('output/output.png', img)
+    pixmap = QtGui.QPixmap("output/output.png") # Setup pixmap with the provided image
     pixmap = pixmap.scaled(self.imagelab2.width(), self.imagelab2.height(), QtCore.Qt.KeepAspectRatio) # Scale pixmap
     self.imagelab2.setPixmap(pixmap) # Set the pixmap onto the label
     self.imagelab2.setAlignment(QtCore.Qt.AlignCenter)
@@ -156,11 +156,11 @@ def median_new(self):
             b = median
             img_out.itemset((i,j), b)
 
-    cv2.imwrite('output/output.jpg', img_out)
+    cv2.imwrite('output/output.png', img_out)
 
 
 
-    pixmap = QtGui.QPixmap("output/output.jpg", img_out) # Setup pixmap with the provided image
+    pixmap = QtGui.QPixmap("output/output.png", img_out) # Setup pixmap with the provided image
     pixmap = pixmap.scaled(self.imagelab2.width(), self.imagelab2.height(), QtCore.Qt.KeepAspectRatio) # Scale pixmap
     self.imagelab2.setPixmap(pixmap) # Set the pixmap onto the label
     self.imagelab2.setAlignment(QtCore.Qt.AlignCenter)
@@ -191,8 +191,8 @@ def max(self):
 
 
 
-    cv2.imwrite('output/output.jpg', img_out)
-    pixmap = QtGui.QPixmap("output/output.jpg", img_out) # Setup pixmap with the provided image
+    cv2.imwrite('output/output.png', img_out)
+    pixmap = QtGui.QPixmap("output/output.png", img_out) # Setup pixmap with the provided image
     pixmap = pixmap.scaled(self.imagelab2.width(), self.imagelab2.height(), QtCore.Qt.KeepAspectRatio) # Scale pixmap
     self.imagelab2.setPixmap(pixmap) # Set the pixmap onto the label
     self.imagelab2.setAlignment(QtCore.Qt.AlignCenter)
@@ -221,8 +221,8 @@ def min(self):
                        min = a
             b = min
             img_out.itemset((i,j), b)
-    cv2.imwrite('output/output.jpg', img_out)
-    pixmap = QtGui.QPixmap("output/output.jpg", img_out) # Setup pixmap with the provided image
+    cv2.imwrite('output/output.png', img_out)
+    pixmap = QtGui.QPixmap("output/output.png", img_out) # Setup pixmap with the provided image
     pixmap = pixmap.scaled(self.imagelab2.width(), self.imagelab2.height(), QtCore.Qt.KeepAspectRatio) # Scale pixmap
     self.imagelab2.setPixmap(pixmap) # Set the pixmap onto the label
     self.imagelab2.setAlignment(QtCore.Qt.AlignCenter)

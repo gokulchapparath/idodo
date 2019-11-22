@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import st
 from imageinfoUI import Ui_imginfo
-
+import sys
 
 class Ui_Mains(object):
     def openImginfo(self):
@@ -11,7 +11,6 @@ class Ui_Mains(object):
         self.ui.setupUi(self.window)
         self.window.show()
 
-
     def setupUi(self, dMain):
         dMain.setObjectName("dMain")
         dMain.resize(1186, 885)
@@ -19,7 +18,8 @@ class Ui_Mains(object):
         self.label = QtWidgets.QLabel(dMain)
         self.label.setGeometry(QtCore.QRect(450, 80, 261, 341))
         self.label.setAutoFillBackground(False)
-        self.label.setStyleSheet("image: url(:/home/shafiya/Desktop/new_prv/logos/dodo.jpg/dodo.jpg);")
+        self.label.setStyleSheet(
+            "image: url(:/home/shafiya/Desktop/new_prv/logos/dodo.jpg/dodo.jpg);")
         self.label.setText("")
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(dMain)
@@ -38,7 +38,8 @@ class Ui_Mains(object):
         font.setBold(True)
         font.setWeight(75)
         self.pushButton.setFont(font)
-        self.pushButton.setStyleSheet("\n""background-color: rgb(239, 41, 41);")
+        self.pushButton.setStyleSheet(
+            "\n""background-color: rgb(239, 41, 41);")
         self.pushButton.setObjectName("pushButton")
 
         self.pushButton.clicked.connect(self.openImginfo)

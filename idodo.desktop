@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=IDODO
+Comment=image enhancement program.
+Exec= python3 /home/shafiya/Desktop/new_prv/frontpage.py
+Icon=/home/shafiya/Desktop/new_prv/dodo.jpg
+Path=/home/shafiya/Desktop/new_prv/
+Type=Application
+Terminal=True
+Categories=Utility;Development;

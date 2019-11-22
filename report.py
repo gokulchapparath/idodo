@@ -85,10 +85,10 @@ class Ui_Report(object):
         self.label_14.setObjectName("label_14")
 
         self.textEdit = QtWidgets.QPlainTextEdit(dReport)
-        self.textEdit.setGeometry(QtCore.QRect(300, 630, 300, 30))
+        self.textEdit.setGeometry(QtCore.QRect(320, 625, 300, 30))
 
         self.textEdit1 = QtWidgets.QPlainTextEdit(dReport)
-        self.textEdit1.setGeometry(QtCore.QRect(300, 680, 300, 30))
+        self.textEdit1.setGeometry(QtCore.QRect(320, 660, 300, 30))
 
 
         self.label_15 = QtWidgets.QLabel(dReport)
@@ -101,14 +101,13 @@ class Ui_Report(object):
         self.exportbtn.setStyleSheet("background-color:rgb(255, 123, 8);\n""color:rgb(255, 255, 255);")
         self.exportbtn.setObjectName("export_btn")
 
-
-
-        pixmap = QtGui.QPixmap("output/output.jpg") # Setup pixmap with the provided image
+        pixmap = QtGui.QPixmap("output/output.png") # Setup pixmap with the provided image
         pixmap = pixmap.scaled(self.label.width(), self.label.height(), QtCore.Qt.KeepAspectRatio) # Scale pixmap
         self.label.setPixmap(pixmap) # Set the pixmap onto the label
         self.label.setAlignment(QtCore.Qt.AlignCenter)
 
         self.exportbtn.clicked.connect(self.printPDF)
+
 
         self.retranslateUi(dReport)
         QtCore.QMetaObject.connectSlotsByName(dReport)
@@ -120,14 +119,14 @@ class Ui_Report(object):
         self.label_2.setText(_translate("dReport", "CASE NO                :"))
         self.label_3.setText(_translate("dReport", "AGENCY                  :"))
         self.label_4.setText(_translate("dReport", "INVESTIGATOR     :"))
-        self.label_5.setText(_translate("dReport", "AGENCY                  :"))
+        self.label_5.setText(_translate("dReport", "IMAGE TYPE           :"))
         self.label_6.setText(_translate("dReport", "REPORT"))
         self.label_7.setText(_translate("dReport", "DATE & TIME         :"))
         self.label_8.setText(_translate("dReport", "ALGORITHM          :"))
         self.label_15.setText(_translate("dReport", "FINDINGS                :"))
 
 
-        self.exportbtn.setText(_translate("dReport", "export_btn"))
+        self.exportbtn.setText(_translate("dReport", "GENERATE REPORT"))
         self.label_14.setText(_translate("dReport", str(disps[1])))
         self.label_9.setText(_translate("dReport", str(disps[2])))
         self.label_10.setText(_translate("dReport", str(disps[3])))
@@ -149,13 +148,15 @@ class Ui_Report(object):
         pdf.add_page()
         pdf.set_xy(10, 0)
         pdf.set_font('arial', 'B', 13.0)
-        pdf.cell(ln=1, h=5.0, align='L', w=0, txt=str(disps[1]), border=0)
-        pdf.cell(ln=1, h=5.0, align='L', w=0, txt=str(disps[2]), border=0)
-        pdf.cell(ln=1, h=5.0, align='L', w=0, txt=str(disps[3]), border=0)
-        pdf.cell(ln=1, h=5.0, align='L', w=0, txt=str(Algo), border=0)
-        pdf.cell(ln=1, h=5.0, align='L', w=0, txt=str(FINDINGS), border=0)
+        pdf.image('/home/shafiya/Desktop/new_prv/output/output.png', x= None,y= None,w=0,h=0,type='',link='')
+        pdf.cell(ln=1, h=5.0, align='L', w=0, txt="Case No : " + str(disps[1]), border=0)
+        pdf.cell(ln=1, h=5.0, align='L', w=0, txt="Agency : "+ str(disps[2]), border=0)
+        pdf.cell(ln=1, h=5.0, align='L', w=0, txt="Investigator : " + str(disps[3]), border=0)
+        pdf.cell(ln=1, h=5.0, align='L', w=0, txt="Image Type : " + str(disps[4]), border=0)
+        pdf.cell(ln=1, h=5.0, align='L', w=0, txt="Algorithm  : " + str(Algo), border=0)
+        pdf.cell(ln=1, h=5.0, align='L', w=0, txt="Findings : " + str(FINDINGS), border=0)
         pdf.output('pdf/caseno' + str(disps[1]) + ':' + times + '.pdf', 'F')
-
+        
 
 if __name__ == "__main__":
     import sys

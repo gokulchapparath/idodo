@@ -40,11 +40,11 @@ class Ui_imginfo(object):
                             """, (CASENO, AGENCY, INVESTIGATOR, IMGTYPE, IMGDES, dir)
         mycursor.execute(*mySql)
         mydb.commit()
-
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_Algrthm()
         self.ui.setupUi(self.window)
         self.window.show()
+
 
 
 

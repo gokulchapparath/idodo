@@ -52,10 +52,10 @@ class Ui_Algrthm(object):
         self.pushButton_3.setStyleSheet("background-color:rgb(255, 123, 8);\n""color:rgb(255, 255, 255);")
         self.pushButton_3.setObjectName("savebtn")
 
-        self.pushButton_4 = QtWidgets.QPushButton(algowin)
-        self.pushButton_4.setGeometry(QtCore.QRect(280, 580, 141, 51))
-        self.pushButton_4.setStyleSheet("background-color:rgb(255, 123, 8);\n""color:rgb(255, 255, 255);")
-        self.pushButton_4.setObjectName("convertbtn")
+        # self.pushButton_4 = QtWidgets.QPushButton(algowin)
+        # self.pushButton_4.setGeometry(QtCore.QRect(280, 580, 141, 51))
+        # self.pushButton_4.setStyleSheet("background-color:rgb(255, 123, 8);\n""color:rgb(255, 255, 255);")
+        # self.pushButton_4.setObjectName("convertbtn")
 
         self.noisebtn= QtWidgets.QPushButton(algowin)
         self.noisebtn.setGeometry(QtCore.QRect(850, 210, 141, 51))
@@ -112,9 +112,9 @@ class Ui_Algrthm(object):
     def retranslateUi(self, algowin):
         _translate = QtCore.QCoreApplication.translate
         algowin.setWindowTitle(_translate("algowin", "algrthm"))
-        self.uploadbtn.setText(_translate("algowin", "Upload Image"))
-        self.pushButton_3.setText(_translate("algowin", "Save Image"))
-        self.pushButton_4.setText(_translate("algowin", "Convert Again"))
+        self.uploadbtn.setText(_translate("algowin", "Show Image"))
+        self.pushButton_3.setText(_translate("algowin", "Next"))
+        # self.pushButton_4.setText(_translate("algowin", "Convert Again"))
         self.noisebtn.setText(_translate("algowin", "noise"))
         self.macbtn.setText(_translate("algowin", "mac"))
         self.sccbtn.setText(_translate("algowin", "scc"))
